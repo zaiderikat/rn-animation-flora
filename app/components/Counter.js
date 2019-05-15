@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
 import {
     Platform,
@@ -18,26 +10,20 @@ import {
     TouchableWithoutFeedback,
     Dimensions
 } from 'react-native';
-
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-    android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import {responsiveHeight, responsiveFontSize, responsiveWidth} from 'react-native-responsive-dimensions';
 
 type Props = {};
-export default class TestApp extends Component<Props> {
+export default class Counter extends Component<Props> {
 
     state = {
         openCounterCompleted: false,
         counterValue: 0,
         btnPlusRotation: new Animated.Value(0),
         btnPlusScale: new Animated.Value(1.6),
-        btnPlusTransitionX: new Animated.Value(-45),
+        btnPlusTransitionX: new Animated.Value(-responsiveWidth(4)),
         counterScale: new Animated.Value(0.5),
-        counterTransitionX: new Animated.Value(50),
-        btnMinusTransitionX: new Animated.Value(75),
+        counterTransitionX: new Animated.Value(responsiveWidth(7)),
+        btnMinusTransitionX: new Animated.Value(responsiveWidth(15)),
         counterTextScale: new Animated.Value(1),
     };
 
@@ -120,8 +106,6 @@ export default class TestApp extends Component<Props> {
         });
 
         return (
-            <View style={styles.container}>
-
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
 
                     <TouchableWithoutFeedback onPress={() => this.toggleCounterValue('minus')}>
@@ -167,69 +151,52 @@ export default class TestApp extends Component<Props> {
                         </Animated.View>
                     </TouchableWithoutFeedback>
                 </View>
-
-            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
     btnPlusStyle: {
+        flexDirection: 'column',
         backgroundColor: '#26b4ae',
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        marginLeft: -15,
+        width: responsiveWidth(10),
+        height: responsiveWidth(10),
+        borderRadius: responsiveWidth(10)/2,
+        marginLeft: -responsiveWidth(2),
         zIndex: 9999
     },
     btnPlusTextStyle: {
         color: '#ffffff',
-        fontSize: 60,
-        textAlign: 'center',
-        lineHeight: 65
+        fontSize: responsiveFontSize(5),
+        lineHeight: responsiveFontSize(5),
+        alignSelf: 'center',
     },
     btnMinusStyle: {
         backgroundColor: '#ffffff',
         borderColor: '#848472',
         borderWidth: 3,
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        marginRight: -15,
+        width: responsiveWidth(10),
+        height: responsiveWidth(10),
+        borderRadius: responsiveWidth(10) / 2,
+        marginRight: -responsiveWidth(2),
         zIndex: 9999
     },
     btnMinusTextStyle: {
         color: '#848472',
-        fontSize: 60,
-        textAlign: 'center',
-        lineHeight: 65
+        fontSize: responsiveFontSize(5),
+        lineHeight: responsiveFontSize(4.8),
+        alignSelf: 'center',
     },
     counterStyle: {
         backgroundColor: '#e3e3e5',
-        width: 105,
-        height: 105,
-        borderRadius: 70
+        width: responsiveWidth(15),
+        height: responsiveWidth(15),
+        borderRadius: responsiveWidth(15) / 2
     },
     counterTextStyle: {
         color: '#848472',
-        fontSize: 60,
-        textAlign: 'center',
-        lineHeight: 100
+        fontSize: responsiveFontSize(5),
+        lineHeight: responsiveFontSize(7.5),
+        alignSelf: 'center',
     },
 });
