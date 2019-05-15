@@ -1,0 +1,3 @@
+rootProject.name = 'FloraNowAnimation'
+
+include ':app'
